@@ -19,10 +19,14 @@ const home = () => {
       <div class="max-w-7xl mx-auto">
         <div class="relative group cursor-pointer">
           <div class="absolute -inset-1 bg-gradient-to-r from-red-600 to-violet-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
-          <div class="relative px-7 py-6 bg-white ring-1 ring-gray-900/5 rounded-lg leading-none flex items-top justify-start space-x-6">
+          <div
+            class={`relative px-7 py-6 ${
+              !isChecked ? "bg-white" : "bg-black"
+            }  ring-1 ring-gray-900/5 rounded-lg leading-none flex items-top justify-start space-x-6`}
+          >
             <div class="space-y-2">
               <p class={` ${!isChecked ? "text-slate-800" : "text-slate-200"}`}>
-                Welcome to Home
+                Welcome to CreatorSpace
               </p>
             </div>
           </div>
@@ -36,12 +40,16 @@ const home = () => {
               onClick={handleChange}
               className="sr-only"
             />
-            <span className="label flex items-center text-sm font-medium text-black">
+            <span
+              className={`label flex items-center text-sm font-medium ${
+                !isChecked ? "text-black" : "text-white"
+              } `}
+            >
               Light mode
             </span>
             <span
               className={`slider mx-4 flex h-8 w-[60px] items-center rounded-full p-1 duration-200 ${
-                isChecked ? "bg-[#212b36]" : "bg-[#CCCCCE]"
+                isChecked ? "bg-[#3ef141]" : "bg-[#CCCCCE]"
               }`}
             >
               <span
@@ -50,7 +58,11 @@ const home = () => {
                 }`}
               ></span>
             </span>
-            <span className="label flex items-center text-sm font-medium text-black">
+            <span
+              className={`label flex items-center text-sm font-medium ${
+                !isChecked ? "text-black" : "text-white"
+              }`}
+            >
               Dark mode
             </span>
           </label>
