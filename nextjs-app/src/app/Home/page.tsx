@@ -26,7 +26,7 @@ const home = () => {
           >
             <div class="space-y-2">
               <p class={` ${!isChecked ? "text-slate-800" : "text-slate-200"}`}>
-                Welcome to CreatorSpace
+                Welcome to Creatorspace
               </p>
             </div>
           </div>
@@ -49,7 +49,7 @@ const home = () => {
             </span>
             <span
               className={`slider mx-4 flex h-8 w-[60px] items-center rounded-full p-1 duration-200 ${
-                isChecked ? "bg-[#3ef141]" : "bg-[#CCCCCE]"
+                isChecked ? "bg-[#212b36]" : "bg-[#CCCCCE]"
               }`}
             >
               <span
