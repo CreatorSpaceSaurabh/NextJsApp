@@ -1,13 +1,38 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import { getPokemon, getAllPokemon } from "./apiService";
 
 const home = () => {
   const [isChecked, setIsChecked] = useState(false);
+  const [pokemonData, setPokemonData] = useState(null);
+  const [loading, isLoading] = useState(true);
+  const apiURL = "https://pokeapi.co/api/v2/pokemon";
 
-  const handleChange = (event) => {
+  const handleChange = (event: any) => {
     event.preventDefault();
     console.log(isChecked);
     setIsChecked(!isChecked);
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, []);
+
+  const fetchData = async () => {
+    let response: any = await getAllPokemon(apiURL);
+    // await loadPokemon(response?.results);
+    isLoading(false);
+    console.log(response);
+  };
+
+  const loadPokemon = async (data: any) => {
+    let _pokemonData: any = await Promise.all(
+      data.map(async (pokemon: any) => {
+        let pokemonGet = await getPokemon(pokemon);
+        return pokemonGet;
+      })
+    );
+    setPokemonData(_pokemonData);
   };
 
   return (
@@ -31,6 +56,7 @@ const home = () => {
             </div>
           </div>
         </div>
+        {/* Toggle swicth */}
         <div className="mt-5">
           <label className="themeSwitcherTwo relative inline-flex cursor-pointer select-none items-center">
             <input
@@ -67,6 +93,7 @@ const home = () => {
             </span>
           </label>
         </div>
+        {/* <div>{JSON.stringify(pokemonData)}</div> */}
       </div>
     </div>
   );
