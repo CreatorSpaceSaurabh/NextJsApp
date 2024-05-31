@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import { getPokemon, getAllPokemon } from "./apiService";
+import Card from "../Card/card";
 
 const home = () => {
   const [isChecked, setIsChecked] = useState(false);
@@ -20,7 +21,7 @@ const home = () => {
 
   const fetchData = async () => {
     let response: any = await getAllPokemon(apiURL);
-    // await loadPokemon(response?.results);
+    await loadPokemon(response?.results);
     isLoading(false);
     console.log(response);
   };
@@ -93,7 +94,11 @@ const home = () => {
             </span>
           </label>
         </div>
-        {/* <div>{JSON.stringify(pokemonData)}</div> */}
+        <div>{JSON.stringify(pokemonData?.length)}</div>
+        <div className="mx-4 bg-green-200 p-2">
+          {pokemonData?.length &&
+            pokemonData?.map((item, i) => <Card key={i} details={item} />)}
+        </div>
       </div>
     </div>
   );
