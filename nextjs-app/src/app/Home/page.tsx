@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { getPokemon, getAllPokemon } from "./apiService";
 import Card from "../Card/card";
+import Loader from "../Loader/loader";
 
 const home = () => {
   const [isChecked, setIsChecked] = useState(false);
@@ -17,6 +18,7 @@ const home = () => {
 
   useEffect(() => {
     fetchData();
+    isLoading(false);
   }, []);
 
   const fetchData = async () => {
@@ -38,21 +40,25 @@ const home = () => {
 
   return (
     <div
-      class={`min-h-screen ${
+      className={`min-h-screen ${
         !isChecked ? "bg-gray-50" : "bg-black-50"
-      }  flex flex-col justify-center relative overflow-hidden `}
+      }  flex flex-col justify-center relative overflow-hidden pt-50`}
     >
-      <div class="max-w-7xl mx-auto">
-        <div class="relative group cursor-pointer">
-          <div class="absolute -inset-1 bg-gradient-to-r from-red-600 to-violet-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+      <div className="max-w-7xl mx-auto">
+        <div className="relative group cursor-pointer">
+          <div className="absolute -inset-1 bg-gradient-to-r from-red-600 to-violet-600 rounded-lg blur opacity-25 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
           <div
-            class={`relative px-7 py-6 ${
+            className={`relative px-7 py-6 ${
               !isChecked ? "bg-white" : "bg-black"
             }  ring-1 ring-gray-900/5 rounded-lg leading-none flex items-top justify-start space-x-6`}
           >
-            <div class="space-y-2">
-              <p class={` ${!isChecked ? "text-slate-800" : "text-slate-200"}`}>
-                Welcome to Creatorspace
+            <div className="space-y-2">
+              <p
+                className={` ${
+                  !isChecked ? "text-slate-800" : "text-slate-200"
+                }`}
+              >
+                Welcome to Pokedex
               </p>
             </div>
           </div>
@@ -94,12 +100,30 @@ const home = () => {
             </span>
           </label>
         </div>
-        <div>{JSON.stringify(pokemonData?.length)}</div>
-        <div className="mx-4 bg-green-200 p-2">
-          {pokemonData?.length &&
-            pokemonData?.map((item, i) => <Card key={i} details={item} />)}
-        </div>
       </div>
+      {loading ? (
+        <Loader />
+      ) : (
+        <div className="">
+          {/* <div
+            className={`relative px-7 py-6 ${
+              !isChecked ? "bg-white" : "bg-black"
+            }`}
+          >
+            <p
+              className={` ${
+                !isChecked ? "text-slate-800" : "text-slate-200"
+              } justify-center text-center`}
+            >
+              Pokemon list
+            </p>
+          </div> */}
+          <div className="mx-4 p-2  grid grid-cols-3 gap-3">
+            {pokemonData?.length &&
+              pokemonData?.map((item, i) => <Card key={i} details={item} />)}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
