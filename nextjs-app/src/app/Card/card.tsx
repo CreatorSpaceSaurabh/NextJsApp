@@ -2,7 +2,7 @@ import React from "react";
 
 const card = ({ details }) => {
   return (
-    <div className="w-full max-w-sm m-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <div className="w-full max-w-sm m-2 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700  -inset-1">
       <div className="flex justify-end px-4 pt-4">
         {/* <button
           id="dropdownButton"
@@ -73,8 +73,13 @@ const card = ({ details }) => {
         <span className="text-sm text-gray-500 dark:text-gray-400">
           Weight: {details.weight}
         </span>
+        <span className="text-sm text-gray-500 dark:text-gray-400">
+          <b>Type:</b>&nbsp;
+          {details.types[0]?.type?.name?.toString()?.charAt(0)?.toUpperCase() +
+            details.types[0]?.type?.name?.toString()?.substring(1)}
+        </span>
         <div className="flex mt-4 md:mt-6">
-          <a
+          {/* <a
             href="#"
             className="inline-flex items-center px-4 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
@@ -83,17 +88,22 @@ const card = ({ details }) => {
               ?.charAt(0)
               ?.toUpperCase() +
               details.types[0]?.type?.name?.toString()?.substring(1)}
-          </a>
-          <a
-            href="#"
-            className="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
-          >
-            {details.moves[0]?.move?.name
-              ?.toString()
-              ?.charAt(0)
-              ?.toUpperCase() +
-              details.moves[0]?.move?.name?.toString()?.substring(1)}
-          </a>
+          </a> */}
+          {details.moves?.length &&
+            details?.moves?.map((x, i) => {
+              if (i < 3) {
+                return (
+                  <a
+                    href="#"
+                    className="py-2 px-4 ms-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700"
+                    aria-disabled
+                  >
+                    {x?.move?.name?.toString()?.charAt(0)?.toUpperCase() +
+                      x?.move?.name?.toString()?.substring(1)}
+                  </a>
+                );
+              }
+            })}
         </div>
       </div>
     </div>
