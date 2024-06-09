@@ -25,7 +25,7 @@ const home = () => {
     let response: any = await getAllPokemon(apiURL);
     await loadPokemon(response?.results);
     isLoading(false);
-    console.log(response);
+    // console.log(response);
   };
 
   const loadPokemon = async (data: any) => {
@@ -105,19 +105,6 @@ const home = () => {
         <Loader />
       ) : (
         <div className="">
-          {/* <div
-            className={`relative px-7 py-6 ${
-              !isChecked ? "bg-white" : "bg-black"
-            }`}
-          >
-            <p
-              className={` ${
-                !isChecked ? "text-slate-800" : "text-slate-200"
-              } justify-center text-center`}
-            >
-              Pokemon list
-            </p>
-          </div> */}
           <div className="mx-4 p-2  grid grid-cols-3 gap-3">
             {pokemonData?.length &&
               pokemonData?.map((item, i) => <Card key={i} details={item} />)}
