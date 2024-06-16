@@ -6,27 +6,23 @@ const ProgressBar = () => {
   const [progress, setProgress] = useState(0);
 
   const increment = () => {
-    setProgress(() => {
-      if (progress < 100) {
-        return progress + 10;
-      }
-    });
+    console.log("Increment called =", progress);
+    setProgress((prev) => (prev < 100 ? prev + 10 : 100));
   };
 
   const decrement = () => {
-    setProgress(() => {
-      if (progress > 0) {
-        return progress - 10;
-      }
-    });
+    console.log("Decrement called =", progress);
+    setProgress((prev) => (prev > 0 ? prev - 10 : 0));
   };
 
   return (
-    <div>
-      <div className="progress-bar" style={{ width: `${progress}%;` }}></div>
-      <div className="row">
-        <button onClick={increment}>Increment</button>
-        <button onClick={decrement}>Decrement</button>
+    <div className="progress-bar-container">
+      <div className="progress-bar" style={{ width: `${progress}%` }}>
+        {progress}%
+      </div>
+      <div className="buttons grid grid-cols-2 gap-2">
+        <button onClick={increment}>Increase</button>
+        <button onClick={decrement}>Decrease</button>
       </div>
     </div>
   );
