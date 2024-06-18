@@ -1,3 +1,21 @@
 .progress-bar {
+    height: 30px;
+    background: rgb(131,58,180);
+    background: linear-gradient(344deg, rgba(131,58,180,1) 0%, rgba(73,221,31,1) 50%, rgba(252,176,69,1) 100%);
+    color: antiquewhite;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: width 0.3s;
     border: 1px solid greenyellow;
+}
+
+.buttons {
+    margin-top: 10px;
+}
+
+.buttons button{
+    margin: 0 5px;
+    padding: 5px 10px;
+    cursor: pointer;
 }
