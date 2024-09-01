@@ -64,13 +64,13 @@ const card = ({ details }) => {
           {details?.name?.toString()?.charAt(0)?.toUpperCase() +
             details?.name?.toString()?.substring(1)}
         </h5>
-        <span className="text-sm text-gray-500 dark:text-gray-400">
+        <span className="text-sm text-gray-500 dark:text-gray-400 pt-2">
           Exp: {details.base_experience}
         </span>
-        <span className="text-sm text-gray-500 dark:text-gray-400">
+        <span className="text-sm text-gray-500 dark:text-gray-400 pt-1">
           Height: {details.height}
         </span>
-        <span className="text-sm text-gray-500 dark:text-gray-400">
+        <span className="text-sm text-gray-500 dark:text-gray-400 pt-1">
           Weight: {details.weight}
         </span>
         <span className="text-sm text-gray-500 dark:text-gray-400">
